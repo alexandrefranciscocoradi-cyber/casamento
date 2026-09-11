@@ -799,12 +799,11 @@
       align-items: center;
       justify-content: flex-start;
       gap: clamp(0.7rem, 1.6vw, 1.2rem);
-      padding: 0 2rem;
+      padding: 10px 2rem 16px;
       flex-wrap: nowrap;
       pointer-events: auto;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+      overflow-x: clip;
+      overflow-y: visible;
     }
 
     .hero-stories::-webkit-scrollbar { display: none; }
@@ -1935,10 +1934,10 @@
       nav { display: none; }
       .g-item { margin-bottom: 0.6rem; }
       .hero { justify-content: flex-start; padding: 0.4rem 1.4rem 2rem; }
-      .hero-stories { position: static; transform: none; align-self: stretch; max-width: 100%; gap: 0.9rem; padding: 0; margin-top: 0.4rem; }
+      .hero-stories { position: static; transform: none; align-self: stretch; gap: 0.9rem; padding: 8px 0 14px; margin-top: 0.4rem; margin-left: -1.4rem; margin-right: -1.4rem; width: auto; max-width: none; justify-content: space-between; overflow-x: clip; overflow-y: visible; }
       .hero-stories .story-circle:first-child { margin-left: 0; }
       .hero-stories .story-circle:last-child { margin-right: 0; }
-      .hero-stories .sc-ring { width: 76px; height: 76px; padding: 3.5px; }
+      .hero-stories .sc-ring { width: min(76px, calc((100vw - 3.6rem) / 5)); height: min(76px, calc((100vw - 3.6rem) / 5)); padding: 3.5px; }
       .hero-content { padding-top: 0.2rem; padding-bottom: 0.5rem; }
       .hero-topline { margin-bottom: 1rem; gap: 0.7rem; font-size: 0.62rem; letter-spacing: 4px; }
       .hero-names { font-size: clamp(2rem, 8.5vw, 3rem); }
