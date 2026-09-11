@@ -2784,7 +2784,7 @@
   </div>
 
   <!-- Back to top -->
-  <button class="to-top" id="toTop" aria-label="Voltar ao topo">♥</button>
+  <button class="to-top" id="toTop" aria-label="Abrir menu">☰</button>
 
   <script>
     /* ==================================================
@@ -2909,10 +2909,7 @@
     }
     onScroll(0);
 
-    toTop.addEventListener('click', () => {
-      if (lenis) lenis.scrollTo(0, { duration: 1.4 });
-      else window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    toTop.addEventListener('click', openMainMenu);
 
     /* ---------- NAV CLICKS / SCROLL SPY ---------- */
     const spyLinks = document.querySelectorAll('[data-spy]');
@@ -2951,11 +2948,12 @@
     /* ---------- MOBILE MENU ---------- */
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
-    burger.addEventListener('click', () => {
-      const open = burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open', open);
+    function openMainMenu() {
+      const open = mobileMenu.classList.toggle('open');
+      burger.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
-    });
+    }
+    burger.addEventListener('click', openMainMenu);
 
     /* ---------- HERO SPARKLES ---------- */
     const hero = document.querySelector('.hero');
