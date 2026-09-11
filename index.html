@@ -46,6 +46,7 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 5rem;
+      overflow-x: hidden;
     }
 
     html.lenis, html.lenis body { height: auto; }
@@ -1947,7 +1948,7 @@
       nav { display: none; }
       .g-item { margin-bottom: 0.6rem; }
       .hero { justify-content: flex-start; }
-      .hero-stories { position: static; transform: none; gap: 0.9rem; padding: 0 1rem; margin-top: 1.4rem; }
+      .hero-stories { position: static; transform: none; align-self: stretch; max-width: 100%; gap: 0.9rem; padding: 0 1rem; margin-top: 1.4rem; }
       .hero-stories .story-circle:first-child { margin-left: 0; }
       .hero-stories .story-circle:last-child { margin-right: 0; }
       .hero-stories .sc-ring { width: 76px; height: 76px; padding: 3.5px; }
