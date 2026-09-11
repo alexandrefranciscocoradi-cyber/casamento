@@ -3005,35 +3005,48 @@
       musicBtn.setAttribute('aria-label', musicOn ? 'Pausar música' : 'Ativar música');
     }
 
+    let unlocked = false;
+    let autoStartTs = 0;
+
     function playTrack(i) {
       if (!playlist.length) return;
       trackIdx = (i + playlist.length) % playlist.length;
       audio.src = playlist[trackIdx];
       audio.load();
+      audio.muted = !unlocked;
       const p = audio.play();
       if (p && typeof p.catch === 'function') p.catch(function () {});
     }
 
     audio.addEventListener('ended', () => playTrack(trackIdx + 1));
 
-    function unlockAndPlay() {
+    function startMusic() {
       if (!musicOn || !playlist.length) return;
-      if (audio.paused) {
-        if (audio.src) audio.play().catch(function () {});
-        else playTrack(0);
+      if (!unlocked) {
+        unlocked = true;
+        audio.muted = false;
+        autoStartTs = Date.now();
       }
+      if (!audio.paused) return;
+      autoStartTs = Date.now();
+      if (!audio.src) { playTrack(0); return; }
+      const p = audio.play();
+      if (p && typeof p.catch === 'function') p.catch(function () {});
     }
 
     musicBtn.addEventListener('click', () => {
+      if (musicOn && autoStartTs && Date.now() - autoStartTs < 500) return;
+      if (musicOn && audio.paused) { startMusic(); return; }
       musicOn = !musicOn;
       localStorage.setItem('siteMusic', musicOn ? 'on' : 'off');
-      if (musicOn) unlockAndPlay();
+      if (musicOn) startMusic();
       else audio.pause();
       refreshMusicUI();
     });
 
-    ['click', 'touchstart', 'keydown'].forEach(evt =>
-      document.addEventListener(evt, unlockAndPlay, { passive: true })
+    ['pointerdown', 'mousedown', 'touchstart', 'touchend', 'click',
+     'keydown', 'wheel', 'scroll', 'touchmove', 'contextmenu'].forEach(evt =>
+      window.addEventListener(evt, startMusic, { capture: true, passive: true })
     );
     refreshMusicUI();
 
