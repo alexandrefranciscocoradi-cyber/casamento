@@ -166,20 +166,22 @@
       margin-bottom: 2rem;
     }
 
-    .preloader-rings svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+    .preloader-rings svg { position: absolute; inset: 0; }
     .preloader-rings .ring-1 { stroke: rgba(232, 160, 171, 0.25); }
     .preloader-rings .ring-2 {
       stroke: var(--rose-light);
       stroke-linecap: round;
-      stroke-dasharray: 276;
-      stroke-dashoffset: 276;
-      animation: preloadSpin 1.6s var(--ease) infinite;
+      stroke-linejoin: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: preloadDraw 2s var(--ease) infinite;
     }
 
-    @keyframes preloadSpin {
-      0% { stroke-dashoffset: 276; transform: rotate(0deg); }
-      60% { stroke-dashoffset: 92; }
-      100% { stroke-dashoffset: 276; transform: rotate(720deg); }
+    @keyframes preloadDraw {
+      0% { stroke-dashoffset: 100; }
+      45% { stroke-dashoffset: 0; }
+      60% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
     }
 
     .preloader-monogram {
@@ -2352,8 +2354,8 @@
   <div class="preloader" id="preloader">
     <div class="preloader-rings">
       <svg width="96" height="96" viewBox="0 0 96 96">
-        <circle class="ring-1" cx="48" cy="48" r="44" stroke-width="1.5" fill="none"/>
-        <circle class="ring-2" cx="48" cy="48" r="44" stroke-width="1.5" fill="none"/>
+        <path class="ring-1" d="M48 80 C48 80 14 58 14 34 C14 21 24 13 34 13 C41 13 46 17 48 23 C50 17 55 13 62 13 C72 13 82 21 82 34 C82 58 48 80 48 80 Z" stroke-width="1.5" fill="none" pathLength="100"/>
+        <path class="ring-2" d="M48 80 C48 80 14 58 14 34 C14 21 24 13 34 13 C41 13 46 17 48 23 C50 17 55 13 62 13 C72 13 82 21 82 34 C82 58 48 80 48 80 Z" stroke-width="1.5" fill="none" pathLength="100"/>
       </svg>
       <span class="preloader-monogram">Ale ♥ Mai</span>
     </div>
