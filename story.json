@@ -281,10 +281,6 @@
     "name": "❤️",
     "media": [
       {
-        "url": "Story/%E2%9D%A4%EF%B8%8F/01.jpg",
-        "type": "image"
-      },
-      {
         "url": "Story/%E2%9D%A4%EF%B8%8F/V0001.mp4",
         "type": "video"
       },
@@ -298,10 +294,6 @@
       },
       {
         "url": "Story/%E2%9D%A4%EF%B8%8F/V0004.mp4",
-        "type": "video"
-      },
-      {
-        "url": "Story/%E2%9D%A4%EF%B8%8F/V0005.mp4",
         "type": "video"
       },
       {
