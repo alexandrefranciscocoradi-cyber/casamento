@@ -680,6 +680,22 @@
       opacity: 0.7;
     }
 
+    .story-section .section-title .kicker {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      letter-spacing: 1.5px;
+      text-transform: none;
+      font-family: var(--serif);
+      font-weight: 300;
+      color: var(--charcoal);
+      gap: 1.2rem;
+    }
+
+    .story-section .section-title .kicker::before,
+    .story-section .section-title .kicker::after {
+      font-size: 1.1rem;
+      color: var(--rose-light);
+    }
+
     .section-title h2 {
       font-family: var(--serif);
       font-size: clamp(2.4rem, 5vw, 4.2rem);
@@ -1186,25 +1202,6 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-
-    .story-tags {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2.8rem;
-    }
-
-    .story-tags span {
-      font-size: 0.58rem;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--rose);
-      border: 1px solid rgba(183,110,121,0.3);
-      border-radius: 40px;
-      padding: 0.45rem 1.1rem;
-      background: rgba(183,110,121,0.05);
     }
 
     /* ========== VERSE SECTION ========== */
@@ -1901,7 +1898,7 @@
     .to-top {
       position: fixed;
       bottom: 2rem;
-      right: 2rem;
+      left: 2rem;
       width: 52px;
       height: 52px;
       border-radius: 50%;
@@ -2020,7 +2017,7 @@
       .lightbox-prev { left: 0.6rem; }
       .lightbox-next { right: 0.6rem; }
       .lightbox-btn { width: 42px; height: 42px; font-size: 1.3rem; }
-      .to-top { bottom: 1.2rem; right: 1.2rem; width: 46px; height: 46px; }
+      .to-top { bottom: 6.6rem; left: 1.2rem; right: auto; width: 46px; height: 46px; }
       .map-wrap iframe { height: 320px; }
     }
 
@@ -2063,6 +2060,243 @@
         transition-duration: 0.01ms !important;
       }
       html { scroll-behavior: auto; }
+    }
+
+    /* ========== BOTÃO PRESENTEAR - HOME ========== */
+    .hero-gift-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.7rem;
+      padding: 0.85rem 1.9rem;
+      border-radius: 50px;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(120deg, var(--rose-light), var(--rose));
+      box-shadow: 0 12px 30px rgba(183, 110, 121, 0.45);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .hero-gift-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(183, 110, 121, 0.55); }
+    .hero-gift-btn:active { transform: scale(0.98); }
+
+    /* ========== SECTION PRESENTEAR ========== */
+    .gift-section {
+      padding: 7rem 2rem;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(232, 160, 171, 0.1), transparent 60%),
+        var(--cream);
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 5rem;
+    }
+    .gift-section .section-title { margin-bottom: 3rem; }
+    .gift-sec-card {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(183, 110, 121, 0.2);
+      border-radius: 22px;
+      box-shadow: 0 30px 70px rgba(183, 110, 121, 0.12);
+    }
+    .gift-sec-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(40, 32, 32, 0.85);
+      margin-bottom: 1rem;
+    }
+    .gift-sec-card .gift-cta { margin: 0.6rem 0 1.4rem; }
+    .gift-sec-card .gift-pay { margin-top: 0.2rem; }
+
+    @media (max-width: 820px) {
+      .gift-section { padding: 5rem 1.2rem; }
+      .gift-sec-card { padding: 2rem 1.3rem; }
+    }
+
+    /* ========== BOTÃO FLUTUANTE - PRESENTE ========== */
+    .gift-float {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      z-index: 1370;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--rose-light), var(--rose));
+      box-shadow: 0 10px 28px rgba(183, 110, 121, 0.45), inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+      animation: gift-bounce 2s ease-in-out infinite;
+      transition: transform 0.3s var(--ease);
+    }
+    .gift-float:hover { transform: scale(1.08); }
+    .gift-float::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(232, 160, 171, 0.6);
+      animation: gift-pulse 2s ease-out infinite;
+    }
+    @keyframes gift-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes gift-pulse {
+      0% { transform: scale(0.85); opacity: 1; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    .gift-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 4005;
+      background: rgba(24, 18, 18, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+    .gift-modal.open { opacity: 1; visibility: visible; }
+
+    .gift-modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--cream);
+      color: var(--charcoal);
+      border-radius: 20px;
+      padding: 2rem 1.8rem 1.8rem;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(183, 110, 121, 0.25);
+      transform: translateY(24px) scale(0.98);
+      transition: transform 0.35s var(--ease);
+    }
+    .gift-modal.open .gift-modal-card { transform: none; }
+
+    .gift-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(183, 110, 121, 0.12);
+      color: var(--rose);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .gift-close:hover { background: rgba(183, 110, 121, 0.25); }
+
+    .gift-modal-card h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+    .gift-modal-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(40, 32, 32, 0.85);
+      margin-bottom: 0.9rem;
+    }
+    .gift-cta {
+      display: inline-block;
+      margin: 0.4rem 0 1.4rem;
+      padding: 0.9rem 1.6rem;
+      border: none;
+      border-radius: 50px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: #fff;
+      background: linear-gradient(120deg, var(--rose-light), var(--rose));
+      box-shadow: 0 10px 24px rgba(183, 110, 121, 0.4);
+      cursor: pointer;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .gift-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(183, 110, 121, 0.5); }
+
+    .gift-pay {
+      margin-top: 0.2rem;
+      padding-top: 1.3rem;
+      border-top: 1px dashed rgba(183, 110, 121, 0.35);
+    }
+    .gift-pay .gift-hint {
+      font-size: 0.8rem;
+      color: rgba(40, 32, 32, 0.6);
+      margin-bottom: 0.9rem;
+    }
+    .gift-qr {
+      width: 210px;
+      height: 210px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #fff;
+      padding: 0.7rem;
+      margin: 0 auto 1.2rem;
+      display: block;
+      box-shadow: 0 14px 30px rgba(183, 110, 121, 0.25);
+    }
+    .gift-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      border-radius: 50px;
+      border: 1px solid rgba(183, 110, 121, 0.45);
+      background: transparent;
+      color: var(--rose);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .gift-copy:hover { background: var(--rose); color: #fff; }
+
+    .gift-foot {
+      margin: 1.4rem 0 0;
+      font-size: 0.85rem;
+      color: var(--rose);
+    }
+
+    @media (max-width: 820px) {
+      .gift-float {
+        right: 1.2rem;
+        bottom: 6.4rem;
+        width: 54px;
+        height: 54px;
+        font-size: 1.5rem;
+      }
+      .gift-modal { padding: 0.9rem; }
+      .gift-modal-card { padding: 1.7rem 1.3rem 1.4rem; }
+      .gift-qr { width: 180px; height: 180px; }
     }
   </style>
 </head>
@@ -2111,6 +2345,7 @@
       <li><a href="#fotos" data-spy>Fotos<i></i></a></li>
       <li><a href="#eventos" data-spy>Eventos<i></i></a></li>
       <li><a href="#detalhes" data-spy>Detalhes<i></i></a></li>
+      <li><a href="#presentear" data-spy>Presentear<i></i></a></li>
     </ul>
 
     <button class="burger" id="burger" aria-label="Menu">
@@ -2125,6 +2360,7 @@
     <a href="#fotos"><span>03</span>Fotos</a>
     <a href="#eventos"><span>04</span>Eventos</a>
     <a href="#detalhes"><span>05</span>Detalhes</a>
+    <a href="#presentear"><span>06</span>Presentear</a>
   </div>
 
   <!-- Hero -->
@@ -2202,6 +2438,8 @@
       </div>
       </div>
 
+      <a class="hero-gift-btn" href="#presentear" aria-label="Presentear os noivos">🎁 Presentear</a>
+
     </div>
   </section>
 
@@ -2221,7 +2459,6 @@
 
     <div class="section-title reveal-block">
       <span class="kicker">Nossa História</span>
-      <h2 data-split>A magia de um amor de verdade</h2>
     </div>
 
     <div class="story-wrap reveal-block">
@@ -2276,14 +2513,6 @@
 
           <div class="signature">Com amor, Alexandre &amp; Maiane ♥</div>
         </div>
-      </div>
-
-      <div class="story-tags">
-        <span>Kart</span>
-        <span>Luva</span>
-        <span>Trilhas</span>
-        <span>Comida</span>
-        <span>Vida</span>
       </div>
     </div>
   </section>
@@ -2449,6 +2678,31 @@
     </div>
 
     <a href="#" id="mapLink" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:0.4rem; margin-top:1.2rem; color:var(--rose); text-decoration:none; border-bottom:1px solid rgba(183,110,121,0.4); font-size:0.78rem; font-weight:500;">Abrir no Google Maps →</a>
+  </section>
+
+  <!-- Presentear -->
+  <section class="gift-section" id="presentear">
+    <div class="section-title reveal-block">
+      <span class="kicker">Presentear</span>
+      <h2 data-split>💍 Faça parte do nosso novo capítulo</h2>
+    </div>
+
+    <div class="gift-sec-card reveal-block">
+      <p>Mais do que qualquer presente, ter você ao nosso lado nesse dia já significa muito para nós. ❤️</p>
+      <p>Mas, se quiser nos presentear, criamos essa opção para você contribuir com um pedacinho dos nossos sonhos e da vida que estamos começando juntos.</p>
+      <p>Cada contribuição, independente do valor, será recebida com muito carinho e fará parte das nossas próximas aventuras, planos e conquistas.</p>
+      <p><strong>Obrigado por fazer parte da nossa história.</strong> 🥂✨</p>
+
+      <button class="gift-cta" id="giftSecCta" type="button">🎁 Quero presentear os noivos</button>
+
+      <div class="gift-pay" id="giftSecPay" hidden>
+        <p class="gift-hint">Aponte a câmera do seu banco para o QR Code ou copie a chave Pix abaixo.</p>
+        <img class="gift-qr" src="assets/pix/pix.jpeg" alt="QR Code Pix dos noivos" loading="lazy">
+        <button class="gift-copy" id="giftSecCopy" type="button">📋 Copiar chave Pix</button>
+      </div>
+
+      <p class="gift-foot">❤️ Muito obrigado por fazer parte desse momento tão especial para nós.</p>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -3057,6 +3311,10 @@
         document.body.style.overflow = '';
         if (lenis) lenis.resume();
         resetTimer();
+        videoSlide = false;
+        paused = false;
+        pStart = null;
+        suppressNav = false;
         svVideo.pause();
         svVideo.removeAttribute('src');
         svVideo.load();
@@ -3066,6 +3324,7 @@
       function currentStory() { return data[curStory]; }
 
       function showSlide(idx) {
+        if (!viewer.classList.contains('open')) return;
         const story = currentStory();
         const total = story.media.length;
         curIdx = Math.min(Math.max(idx, 0), total - 1);
@@ -3195,6 +3454,7 @@
       }
 
       function advance(dir) {
+        if (!viewer.classList.contains('open')) return;
         dir = dir || 1;
         resetTimer();
         if (!data.length) return;
@@ -3232,7 +3492,7 @@
       });
 
       svVideo.addEventListener('ended', function () {
-        if (videoSlide) advance(1);
+        if (videoSlide && viewer.classList.contains('open')) advance(1);
       });
 
       svSoundBtn.addEventListener('click', function () {
@@ -3320,6 +3580,103 @@
       window.addEventListener('resize', refresh);
       refresh();
     })();
+
+    (function initGift() {
+      const pixCode = '00020126580014BR.GOV.BCB.PIX01360ac21fcf-04da-4527-acbe-63dde46aedc45204000053039865802BR5925ALEXANDRE FRANCISCO CORAD6009SAO PAULO622605221Tz8pvB7AML7PiIqRPKEAH63040CB5';
+
+      function fallbackCopy(ok) {
+        const ta = document.createElement('textarea');
+        ta.value = pixCode;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); ok(); } catch (err) {}
+        document.body.removeChild(ta);
+      }
+
+      function wire() {
+        const gift = document.getElementById('giftFloat');
+        const modal = document.getElementById('giftModal');
+        const closeBtn = document.getElementById('giftClose');
+        const cta = document.getElementById('giftCta');
+        const pay = document.getElementById('giftPay');
+        const copyBtn = document.getElementById('giftCopy');
+        const secCta = document.getElementById('giftSecCta');
+        const secPay = document.getElementById('giftSecPay');
+        const secCopy = document.getElementById('giftSecCopy');
+        if (!gift || !modal || !closeBtn || !cta || !pay || !copyBtn) return;
+
+        function openModal() {
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+          modal.classList.remove('open');
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        gift.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        });
+
+        cta.addEventListener('click', function () {
+          pay.hidden = false;
+          setTimeout(function () {
+            pay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 120);
+        });
+
+        copyBtn.addEventListener('click', function () {
+          const ok = function () {
+            copyBtn.textContent = '✓ Pix copiado!';
+            setTimeout(function () { copyBtn.textContent = '📋 Copiar chave Pix'; }, 2200);
+          };
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(pixCode).then(ok, function () { fallbackCopy(ok); });
+          } else {
+            fallbackCopy(ok);
+          }
+        });
+
+        if (secCta && secPay) {
+          secCta.addEventListener('click', function () {
+            secPay.hidden = false;
+            setTimeout(function () {
+              secPay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 120);
+          });
+        }
+
+        if (secCopy) {
+          secCopy.addEventListener('click', function () {
+            const ok = function () {
+              secCopy.textContent = '✓ Pix copiado!';
+              setTimeout(function () { secCopy.textContent = '📋 Copiar chave Pix'; }, 2200);
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+              navigator.clipboard.writeText(pixCode).then(ok, function () { fallbackCopy(ok); });
+            } else {
+              fallbackCopy(ok);
+            }
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wire);
+      } else {
+        wire();
+      }
+    })();
   </script>
 
   <nav class="mobile-float" id="mobileFloat" aria-label="Menu rápido">
@@ -3328,6 +3685,32 @@
     <a href="#fotos">Fotos</a>
     <a href="#eventos">Eventos</a>
     <a href="#detalhes">Detalhes</a>
+    <a href="#presentear">Presentear</a>
   </nav>
+
+  <button class="gift-float" id="giftFloat" type="button" aria-label="Presentear os noivos" title="Presentear os noivos">🎁</button>
+
+  <div class="gift-modal" id="giftModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="giftTitle">
+    <div class="gift-modal-card">
+      <button class="gift-close" id="giftClose" type="button" aria-label="Fechar">✕</button>
+
+      <h3 id="giftTitle">💍 Faça parte do nosso novo capítulo</h3>
+
+      <p>Mais do que qualquer presente, ter você ao nosso lado nesse dia já significa muito para nós. ❤️</p>
+      <p>Mas, se quiser nos presentear, criamos essa opção para você contribuir com um pedacinho dos nossos sonhos e da vida que estamos começando juntos.</p>
+      <p>Cada contribuição, independente do valor, será recebida com muito carinho e fará parte das nossas próximas aventuras, planos e conquistas.</p>
+      <p><strong>Obrigado por fazer parte da nossa história.</strong> 🥂✨</p>
+
+      <button class="gift-cta" id="giftCta" type="button">🎁 Quero presentear os noivos</button>
+
+      <div class="gift-pay" id="giftPay" hidden>
+        <p class="gift-hint">Aponte a câmera do seu banco para o QR Code ou copie a chave Pix abaixo.</p>
+        <img class="gift-qr" src="assets/pix/pix.jpeg" alt="QR Code Pix dos noivos" loading="lazy">
+        <button class="gift-copy" id="giftCopy" type="button">📋 Copiar chave Pix</button>
+      </div>
+
+      <p class="gift-foot">❤️ Muito obrigado por fazer parte desse momento tão especial para nós.</p>
+    </div>
+  </div>
 </body>
 </html>
