@@ -3,6 +3,10 @@
     "name": "4",
     "media": [
       {
+        "url": "Story/4/01%20WhatsApp%20Video%202026-09-11%20at%2015.11.13.mp4",
+        "type": "video"
+      },
+      {
         "url": "Story/4/IMG_1189.JPEG",
         "type": "image"
       },
@@ -176,6 +180,10 @@
     "name": "5",
     "media": [
       {
+        "url": "Story/5/01%20WhatsApp%20Video%202026-09-11%20at%2015.11.14.mp4",
+        "type": "video"
+      },
+      {
         "url": "Story/5/WhatsApp%20Image%202026-09-11%20at%2011.39.00%20%283%29.jpeg",
         "type": "image"
       },
@@ -306,6 +314,10 @@
     "name": "📍",
     "media": [
       {
+        "url": "Story/%F0%9F%93%8D/01%20WhatsApp%20Video%202026-09-11%20at%2015.11.15.mp4",
+        "type": "video"
+      },
+      {
         "url": "Story/%F0%9F%93%8D/WhatsApp%20Image%202026-09-11%20at%2010.16.27.jpeg",
         "type": "image"
       },
@@ -406,6 +418,10 @@
   {
     "name": "🛣️",
     "media": [
+      {
+        "url": "Story/%F0%9F%9B%A3%EF%B8%8F/01%20WhatsApp%20Video%202026-09-11%20at%2015.11.16.mp4",
+        "type": "video"
+      },
       {
         "url": "Story/%F0%9F%9B%A3%EF%B8%8F/WhatsApp%20Image%202026-09-11%20at%2010.35.39.jpeg",
         "type": "image"
