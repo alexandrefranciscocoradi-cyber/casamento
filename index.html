@@ -889,6 +889,16 @@
       box-sizing: border-box;
     }
 
+    .sc-ring video::-webkit-media-controls-panel,
+    .sc-ring video::-webkit-media-controls-overlay-play-button,
+    .sc-ring video::-webkit-media-controls-start-playback-button {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+    .sc-ring video::-webkit-media-controls {
+      display: none !important;
+    }
+
     .sc-blank {
       position: absolute;
       inset: 0;
@@ -3662,13 +3672,15 @@
             vd.loop = true;
             vd.autoplay = true;
             vd.playsInline = true;
-            vd.preload = 'metadata';
+            vd.preload = 'auto';
             vd.setAttribute('playsinline', '');
             vd.setAttribute('webkit-playsinline', '');
             vd.src = first.url;
             if (hasImage) vd.poster = cover.url;
             vd.setAttribute('aria-hidden', 'true');
             ring.appendChild(vd);
+            var pr = vd.play();
+            if (pr && pr.catch) pr.catch(function () {});
             btn.appendChild(ring);
             btn.addEventListener('click', function () { openStory(i); });
             frag.appendChild(btn);
