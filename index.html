@@ -2199,7 +2199,7 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         line-height: 1.15;
-        margin-top: 24vh;
+        margin-top: 18vh;
         color: rgba(255, 255, 255, 0.65);
       }
       .hero-names .outline { -webkit-text-stroke-color: rgba(255, 255, 255, 0.65); }
@@ -2212,9 +2212,11 @@
       }
       .hero-divider { width: clamp(96px, 38vw + 1vh, 160px); margin: 1.2vh auto clamp(0.4rem, 1.4vh, 0.7rem); }
       .hero-subtitle { margin-top: 1.4vh; font-size: clamp(0.66rem, 2.8vw + 0.8vh, 0.9rem); letter-spacing: clamp(3px, 1.2vw, 5px); }
-      .hero-date { font-size: clamp(1.2rem, 3.6vw + 1.2vh, 1.9rem); margin-top: 1vh; letter-spacing: clamp(4px, 1.4vw, 7px); }
+      .hero-date { color: rgba(255,255,255,0.65); font-size: clamp(1.2rem, 3.6vw + 1.2vh, 1.9rem); margin-top: 1vh; letter-spacing: clamp(4px, 1.4vw, 7px); }
       .hero-countdown { margin-top: clamp(0.6rem, 2vh, 1.4rem); }
-      .hero-countdown .countdown-label { font-size: clamp(0.48rem, 2.4vw + 0.8vh, 0.7rem); letter-spacing: clamp(2px, 0.9vw, 3.5px); margin-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
+      .hero-countdown .countdown-label { color: rgba(255,255,255,0.65); font-size: clamp(0.48rem, 2.4vw + 0.8vh, 0.7rem); letter-spacing: clamp(2px, 0.9vw, 3.5px); margin-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
+      .hero-countdown .cd-number { color: rgba(255,255,255,0.65); }
+      .hero-countdown .cd-unit { color: rgba(255,255,255,0.65); }
       .countdown { gap: clamp(0.35rem, 2vw + 0.6vh, 0.75rem); }
       .cd-item { max-width: clamp(52px, 14.5vw, 62px); width: auto; height: auto; }
       .cd-number { font-size: clamp(0.9rem, 3.4vw + 1.2vh, 1.1rem); }
@@ -2224,7 +2226,7 @@
     }
 
     @media (max-width: 359px) {
-      .hero-names { margin-top: 21vh; }
+      .hero-names { margin-top: 15vh; }
     }
 
     @media (hover: none), (pointer: coarse) {
