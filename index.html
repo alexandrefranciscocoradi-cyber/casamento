@@ -4103,6 +4103,45 @@
         wire();
       }
     })();
+
+    (function () {
+      var mq = window.matchMedia('(max-width: 820px)');
+      var cdElem = document.querySelector('.hero-countdown');
+      var btnElem = document.querySelector('.hero-gift-btn');
+      if (!cdElem || !btnElem) return;
+      var baseline = null;
+      function alignCountdown() {
+        if (mq.matches) {
+          if (baseline === null) baseline = parseFloat(window.getComputedStyle(cdElem).marginTop) || 0;
+          var gap = btnElem.getBoundingClientRect().top - cdElem.getBoundingClientRect().bottom;
+          var extra = Math.max(0, Math.round(gap - 18));
+          cdElem.style.marginTop = (baseline + extra) + 'px';
+          window._cdInfo = { base: baseline, gap: Math.round(gap), extra: extra, mt: cdElem.style.marginTop };
+        }
+      }
+      var t = null;
+      function onResize() { clearTimeout(t); t = setTimeout(alignCountdown, 120); }
+      window.addEventListener('resize', onResize);
+      window.addEventListener('orientationchange', onResize);
+      window.addEventListener('load', alignCountdown);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(alignCountdown, function () {});
+      }
+      if (window.ResizeObserver) {
+        new ResizeObserver(alignCountdown).observe(document.body);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', alignCountdown);
+      } else {
+        alignCountdown();
+      }
+      setTimeout(alignCountdown, 400);
+      var ivStart = Date.now();
+      var iv = setInterval(function () {
+        alignCountdown();
+        if (Date.now() - ivStart > 6000) clearInterval(iv);
+      }, 700);
+    })();
   </script>
 
   <nav class="mobile-float" id="mobileFloat" aria-label="Menu rápido">
