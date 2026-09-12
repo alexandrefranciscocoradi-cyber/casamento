@@ -2213,7 +2213,7 @@
       .hero-divider { width: clamp(96px, 38vw + 1vh, 160px); margin: 1.2vh auto clamp(0.4rem, 1.4vh, 0.7rem); }
       .hero-subtitle { margin-top: 1.4vh; font-size: clamp(0.66rem, 2.8vw + 0.8vh, 0.9rem); letter-spacing: clamp(3px, 1.2vw, 5px); }
       .hero-date { color: rgba(255,255,255,0.65); font-size: clamp(1.2rem, 3.6vw + 1.2vh, 1.9rem); margin-top: 1vh; letter-spacing: clamp(4px, 1.4vw, 7px); }
-      .hero-countdown { margin-top: clamp(0.6rem, 2vh, 1.4rem); }
+      .hero-countdown { margin-top: auto; }
       .hero-countdown .countdown-label { color: rgba(255,255,255,0.65); font-size: clamp(0.48rem, 2.4vw + 0.8vh, 0.7rem); letter-spacing: clamp(2px, 0.9vw, 3.5px); margin-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
       .hero-countdown .cd-number { color: rgba(255,255,255,0.65); }
       .hero-countdown .cd-unit { color: rgba(255,255,255,0.65); }
@@ -2221,7 +2221,7 @@
       .cd-item { max-width: clamp(52px, 14.5vw, 62px); width: auto; height: auto; }
       .cd-number { font-size: clamp(0.9rem, 3.4vw + 1.2vh, 1.1rem); }
       .cd-unit { font-size: clamp(0.24rem, 1.6vw + 0.5vh, 0.38rem); margin-top: clamp(0.18rem, 0.8vw + 0.25vh, 0.3rem); }
-      .hero-content .hero-gift-btn { font-size: clamp(0.52rem, 2.3vw + 0.5vh, 0.64rem); padding: clamp(0.42rem, 1.5vw + 0.3vh, 0.54rem) clamp(0.82rem, 3.3vw, 1.15rem); margin-top: auto; margin-bottom: 0; animation: none; }
+      .hero-content .hero-gift-btn { font-size: clamp(0.52rem, 2.3vw + 0.5vh, 0.64rem); padding: clamp(0.42rem, 1.5vw + 0.3vh, 0.54rem) clamp(0.82rem, 3.3vw, 1.15rem); margin-top: 18px; margin-bottom: 0; animation: none; }
       .hero-content .hero-gift-btn::after { display: none; }
     }
 
@@ -4102,45 +4102,6 @@
       } else {
         wire();
       }
-    })();
-
-    (function () {
-      var mq = window.matchMedia('(max-width: 820px)');
-      var cdElem = document.querySelector('.hero-countdown');
-      var btnElem = document.querySelector('.hero-gift-btn');
-      if (!cdElem || !btnElem) return;
-      var baseline = null;
-      function alignCountdown() {
-        if (mq.matches) {
-          if (baseline === null) baseline = parseFloat(window.getComputedStyle(cdElem).marginTop) || 0;
-          var gap = btnElem.getBoundingClientRect().top - cdElem.getBoundingClientRect().bottom;
-          var extra = Math.max(0, Math.round(gap - 18));
-          cdElem.style.marginTop = (baseline + extra) + 'px';
-          window._cdInfo = { base: baseline, gap: Math.round(gap), extra: extra, mt: cdElem.style.marginTop };
-        }
-      }
-      var t = null;
-      function onResize() { clearTimeout(t); t = setTimeout(alignCountdown, 120); }
-      window.addEventListener('resize', onResize);
-      window.addEventListener('orientationchange', onResize);
-      window.addEventListener('load', alignCountdown);
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(alignCountdown, function () {});
-      }
-      if (window.ResizeObserver) {
-        new ResizeObserver(alignCountdown).observe(document.body);
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', alignCountdown);
-      } else {
-        alignCountdown();
-      }
-      setTimeout(alignCountdown, 400);
-      var ivStart = Date.now();
-      var iv = setInterval(function () {
-        alignCountdown();
-        if (Date.now() - ivStart > 6000) clearInterval(iv);
-      }, 700);
     })();
   </script>
 
