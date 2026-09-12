@@ -2190,18 +2190,38 @@
       }
       .hero { min-height: 100svh; justify-content: space-between; padding: clamp(0.9rem, 2vh, 1.4rem) 1.4rem clamp(4rem, 9vh, 5rem); }
       .hero-stories { flex: 0 0 auto; align-self: stretch; }
-      .hero-content { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; }
+      .hero-content { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 0; }
       .hero-topline { display: none; }
-      .hero-divider { width: clamp(96px, 38vw + 1vh, 160px); margin: clamp(0.45rem, 1.6vw + 0.5vh, 0.75rem) auto; }
-      .hero-subtitle { font-size: clamp(0.66rem, 2.8vw + 0.8vh, 0.9rem); letter-spacing: clamp(3px, 1.2vw, 5px); }
-      .hero-date { font-size: clamp(1.2rem, 3.6vw + 1.2vh, 1.9rem); margin-top: clamp(0.4rem, 1.4vw + 0.5vh, 0.9rem); letter-spacing: clamp(4px, 1.4vw, 7px); }
-      .hero-countdown { margin-top: clamp(0.5rem, 2vw + 0.8vh, 1.2rem); }
-      .hero-countdown .countdown-label { font-size: clamp(0.48rem, 2.4vw + 0.8vh, 0.7rem); letter-spacing: clamp(2px, 0.9vw, 3.5px); margin-bottom: clamp(0.4rem, 2.2vw + 0.8vh, 1.2rem); }
+      .hero-names {
+        font-family: var(--sans);
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.15;
+        margin-top: 30vh;
+      }
+      .hero-ampersand {
+        font-family: var(--sans);
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+        margin: 0.05rem 0;
+        transform: none;
+        line-height: 1;
+      }
+      .hero-divider { width: clamp(96px, 38vw + 1vh, 160px); margin: 1.2vh auto clamp(0.4rem, 1.4vh, 0.7rem); }
+      .hero-subtitle { margin-top: 1.4vh; font-size: clamp(0.66rem, 2.8vw + 0.8vh, 0.9rem); letter-spacing: clamp(3px, 1.2vw, 5px); }
+      .hero-date { font-size: clamp(1.2rem, 3.6vw + 1.2vh, 1.9rem); margin-top: 1vh; letter-spacing: clamp(4px, 1.4vw, 7px); }
+      .hero-countdown { margin-top: clamp(0.6rem, 2vh, 1.4rem); }
+      .hero-countdown .countdown-label { font-size: clamp(0.48rem, 2.4vw + 0.8vh, 0.7rem); letter-spacing: clamp(2px, 0.9vw, 3.5px); margin-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
       .countdown { gap: clamp(0.35rem, 2vw + 0.6vh, 0.75rem); }
-      .cd-item { max-width: clamp(64px, 20vw + 1.4vh, 92px); }
-      .cd-number { font-size: clamp(1.05rem, 4.6vw + 1.6vh, 1.55rem); }
-      .cd-unit { font-size: clamp(0.32rem, 2.2vw + 0.8vh, 0.52rem); margin-top: clamp(0.2rem, 0.9vw + 0.3vh, 0.35rem); }
+      .cd-item { max-width: clamp(52px, 14.5vw, 62px); width: auto; height: auto; }
+      .cd-number { font-size: clamp(0.9rem, 3.4vw + 1.2vh, 1.1rem); }
+      .cd-unit { font-size: clamp(0.3rem, 2vw + 0.7vh, 0.5rem); margin-top: clamp(0.18rem, 0.8vw + 0.25vh, 0.3rem); }
       .hero-content .hero-gift-btn { font-size: clamp(0.56rem, 2.4vw + 0.6vh, 0.72rem); padding: clamp(0.5rem, 1.8vw + 0.4vh, 0.65rem) clamp(0.9rem, 3.6vw, 1.3rem); margin-top: auto; margin-bottom: 0; }
+    }
+
+    @media (max-width: 359px) {
+      .hero-names { margin-top: 27vh; }
     }
 
     @media (hover: none), (pointer: coarse) {
