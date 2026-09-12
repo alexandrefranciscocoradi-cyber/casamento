@@ -877,7 +877,8 @@
       transition: transform 0.35s var(--ease);
     }
 
-    .sc-ring img {
+    .sc-ring img,
+    .sc-ring video {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -3591,16 +3592,38 @@
           btn.className = 'story-circle';
           btn.setAttribute('aria-label', 'Abrir destaque ' + story.name);
 
-          const img = document.createElement('img');
-          const cover = story.media.find(function (m) { return m.type === 'image'; }) || story.media[0];
+          const first = story.media[0];
+          const cover = story.media.find(function (m) { return m.type === 'image'; }) || first;
           const hasImage = !!(cover && cover.type === 'image');
+
+          const ring = document.createElement('span');
+          ring.className = 'sc-ring';
+
+          if (first && first.type === 'video') {
+            const vd = document.createElement('video');
+            vd.muted = true;
+            vd.loop = true;
+            vd.autoplay = true;
+            vd.playsInline = true;
+            vd.preload = 'metadata';
+            vd.setAttribute('playsinline', '');
+            vd.setAttribute('webkit-playsinline', '');
+            vd.src = first.url;
+            if (hasImage) vd.poster = cover.url;
+            vd.setAttribute('aria-hidden', 'true');
+            ring.appendChild(vd);
+            btn.appendChild(ring);
+            btn.addEventListener('click', function () { openStory(i); });
+            frag.appendChild(btn);
+            return;
+          }
+
+          const img = document.createElement('img');
           if (hasImage) img.src = cover.url;
           img.alt = story.name;
           img.loading = 'lazy';
           img.decoding = 'async';
 
-          const ring = document.createElement('span');
-          ring.className = 'sc-ring';
           if (!hasImage) {
             img.style.display = 'none';
             const blank = document.createElement('span');
