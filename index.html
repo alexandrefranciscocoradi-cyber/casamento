@@ -2189,10 +2189,16 @@
         line-height: 1;
       }
       .hero-topline { display: none; }
-      .hero-divider { margin: 0.65rem auto; }
-      .hero-date { margin-top: 0.4rem; }
-      .hero-countdown { margin-top: 0.7rem; }
-      .hero-gift-btn { margin-top: 0.9rem; }
+      .hero-divider { width: clamp(96px, 40vw, 160px); margin: clamp(0.5rem, 2.4vw, 0.75rem) auto; }
+      .hero-subtitle { font-size: clamp(0.66rem, 3.3vw, 0.85rem); letter-spacing: clamp(3px, 1.4vw, 5px); }
+      .hero-date { font-size: clamp(1.2rem, 4.4vw, 1.8rem); margin-top: clamp(0.4rem, 2vw, 0.9rem); letter-spacing: clamp(4px, 1.6vw, 7px); }
+      .hero-countdown { margin-top: clamp(0.7rem, 3vw, 1.2rem); }
+      .hero-countdown .countdown-label { font-size: clamp(0.5rem, 3vw, 0.68rem); letter-spacing: clamp(2px, 1vw, 3.5px); margin-bottom: clamp(0.5rem, 3vw, 1.2rem); }
+      .countdown { gap: clamp(0.4rem, 2.4vw, 0.7rem); }
+      .cd-item { max-width: clamp(64px, 24vw, 92px); }
+      .cd-number { font-size: clamp(1.1rem, 5.8vw, 1.5rem); }
+      .cd-unit { font-size: clamp(0.34rem, 2.8vw, 0.5rem); margin-top: clamp(0.2rem, 1vw, 0.35rem); }
+      .hero-content .hero-gift-btn { font-size: clamp(0.58rem, 2.8vw, 0.7rem); padding: clamp(0.5rem, 2vw, 0.65rem) clamp(0.9rem, 4vw, 1.3rem); margin-top: clamp(0.8rem, 3.2vw, 1.1rem); }
     }
 
     @media (hover: none), (pointer: coarse) {
