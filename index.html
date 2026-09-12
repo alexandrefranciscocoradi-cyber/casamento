@@ -887,6 +887,17 @@
       box-sizing: border-box;
     }
 
+    .sc-blank {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      background: linear-gradient(160deg, #3a2328, #1c1313);
+      border-radius: inherit;
+    }
+
     .story-circle:hover .sc-ring { transform: translateY(-3px); }
     .story-circle:active .sc-ring { transform: scale(0.95); }
 
@@ -3528,13 +3539,22 @@
           btn.setAttribute('aria-label', 'Abrir destaque ' + story.name);
 
           const img = document.createElement('img');
-          img.src = story.media[0] ? story.media[0].url : '';
+          const cover = story.media.find(function (m) { return m.type === 'image'; }) || story.media[0];
+          const hasImage = !!(cover && cover.type === 'image');
+          if (hasImage) img.src = cover.url;
           img.alt = story.name;
           img.loading = 'lazy';
           img.decoding = 'async';
 
           const ring = document.createElement('span');
           ring.className = 'sc-ring';
+          if (!hasImage) {
+            img.style.display = 'none';
+            const blank = document.createElement('span');
+            blank.className = 'sc-blank';
+            blank.textContent = story.name;
+            ring.appendChild(blank);
+          }
           ring.appendChild(img);
 
           btn.appendChild(ring);
@@ -3595,6 +3615,8 @@
           v.style.display = 'block';
           v.muted = false;
           svSoundBtn.textContent = '🔊';
+          const posterM = story.media.find(function (m) { return m.type === 'image'; });
+          v.poster = posterM ? posterM.url : '';
           v.src = md.url;
           v.currentTime = 0;
           const p = v.play();
