@@ -2172,6 +2172,29 @@
       .cd-unit { font-size: 0.42rem; margin-top: 0.25rem; }
     }
 
+    @media (max-width: 820px) {
+      .hero-names {
+        font-family: var(--sans);
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.15;
+      }
+      .hero-ampersand {
+        font-family: var(--sans);
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+        margin: 0.05rem 0;
+        transform: none;
+        line-height: 1;
+      }
+      .hero-topline { margin-bottom: 0.75rem; }
+      .hero-divider { margin: 0.65rem auto; }
+      .hero-date { margin-top: 0.4rem; }
+      .hero-countdown { margin-top: 0.7rem; }
+      .hero-gift-btn { margin-top: 0.9rem; }
+    }
+
     @media (hover: none), (pointer: coarse) {
       .cursor-dot, .cursor-ring { display: none; }
     }
