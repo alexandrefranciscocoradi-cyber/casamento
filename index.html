@@ -2066,6 +2066,31 @@
       box-shadow: 0 12px 30px rgba(183, 110, 121, 0.4);
     }
 
+    .music-float.in-viewer {
+      position: static;
+      width: 36px;
+      height: 36px;
+      margin: 0;
+      padding: 0.3rem;
+      border-radius: 50%;
+      border: none;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      color: #fff;
+      font-size: 1rem;
+      animation: none;
+      transform: none;
+    }
+    .music-float.in-viewer::after { display: none; }
+    .music-float.in-viewer:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      transform: none;
+      box-shadow: none;
+    }
+
     @keyframes music-pulse {
       0% { transform: scale(0.9); opacity: 1; }
       100% { transform: scale(1.4); opacity: 0; }
@@ -3635,6 +3660,7 @@
       const svClose = document.getElementById('svClose');
       const svPrev = document.getElementById('svPrev');
       const svNext = document.getElementById('svNext');
+      const svMusicFloat = document.getElementById('musicFloat');
 
       let data = [];
       let curStory = 0;
@@ -3736,13 +3762,29 @@
         viewer.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
         if (lenis) lenis.stop();
+        swapMusicButton(true);
         showSlide(0);
+      }
+
+      function swapMusicButton(inViewer) {
+        const head = document.querySelector('.sv-head');
+        if (!head || !svMusicFloat) return;
+        if (inViewer && svMusicFloat.parentNode !== head) {
+          svSoundBtn.style.display = 'none';
+          head.insertBefore(svMusicFloat, svClose);
+          svMusicFloat.classList.add('in-viewer');
+        } else if (!inViewer && svMusicFloat.parentNode === head) {
+          svSoundBtn.style.display = '';
+          document.body.appendChild(svMusicFloat);
+          svMusicFloat.classList.remove('in-viewer');
+        }
       }
 
       function closeViewer() {
         viewer.classList.remove('open');
         viewer.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        swapMusicButton(false);
         resetTimer();
         videoSlide = false;
         paused = false;
