@@ -2809,9 +2809,8 @@
   <section class="gallery-section" id="fotos">
     <div class="section-title reveal-block">
       <span class="kicker">Nossos Momentos</span>
-      <h2 data-split>Memórias de um amor sem fim</h2>
+      <h2 data-split>Momentos especiais que construímos juntos e que levaremos para sempre.</h2>
     </div>
-    <p class="gallery-hint">Clique em uma foto para ampliar</p>
     <div class="gallery-grid" id="gallery"></div>
   </section>
 
@@ -3053,30 +3052,7 @@
     /* ==================================================
        CONFIGURAÇÃO DO CASAL — edite aqui
     ================================================== */
-    const FOTOS = [
-      "Fotos/IMG_8290.JPEG",
-      "Fotos/FullSizeRender.JPEG",
-      "Fotos/IMG_0474.JPEG",
-      "Fotos/IMG_0743.JPEG",
-      "Fotos/IMG_1132.JPEG",
-      "Fotos/IMG_1189.JPEG",
-      "Fotos/IMG_1198.JPEG",
-      "Fotos/IMG_2350.JPEG",
-      "Fotos/IMG_2706.JPEG",
-      "Fotos/IMG_2926.JPEG",
-      "Fotos/IMG_3462.JPEG",
-      "Fotos/IMG_4131.JPEG",
-      "Fotos/IMG_4559.JPEG",
-      "Fotos/IMG_4874.JPEG",
-      "Fotos/IMG_5366.JPEG",
-      "Fotos/IMG_5944.JPEG",
-      "Fotos/IMG_5976.JPEG",
-      "Fotos/IMG_6291.JPEG",
-      "Fotos/IMG_6325.JPEG",
-      "Fotos/IMG_6447.JPEG",
-      "Fotos/IMG_7583.JPEG",
-      "Fotos/IMG_7666.JPEG"
-    ];
+    let FOTOS = [];
 
     const CASAMENTO = {
       data: new Date('2026-11-14T10:30:00'),
@@ -3429,49 +3405,66 @@
        GALERIA
     ================================================== */
     const gallery = document.getElementById('gallery');
-    const frag = document.createDocumentFragment();
 
-    FOTOS.forEach((src, i) => {
-      const item = document.createElement('div');
-      item.className = 'g-item';
-      item.dataset.index = i;
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+      }
+      return arr;
+    }
 
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = 'Foto ' + (i + 1);
-      img.loading = 'lazy';
-      img.decoding = 'async';
+    function renderGallery() {
+      const frag = document.createDocumentFragment();
 
-      const num = document.createElement('span');
-      num.className = 'num';
-      num.textContent = '♡ ' + String(i + 1).padStart(2, '0');
+      FOTOS.forEach((src, i) => {
+        const item = document.createElement('div');
+        item.className = 'g-item';
+        item.dataset.index = i;
 
-      const zoom = document.createElement('span');
-      zoom.className = 'zoom-hint';
-      zoom.textContent = '⌕';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Foto ' + (i + 1);
+        img.loading = 'lazy';
+        img.decoding = 'async';
 
-      item.append(img, num, zoom);
-      item.addEventListener('click', () => openLightbox(i));
-      frag.appendChild(item);
-    });
-    gallery.appendChild(frag);
+        const num = document.createElement('span');
+        num.className = 'num';
+        num.textContent = '♡ ' + String(i + 1).padStart(2, '0');
 
-    const gItems = Array.from(gallery.querySelectorAll('.g-item'));
+        const zoom = document.createElement('span');
+        zoom.className = 'zoom-hint';
+        zoom.textContent = '⌕';
 
-    if (gsapReady && stReady) {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray('.g-item').forEach((item, i) => {
-        gsap.to(item, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.9,
-          ease: 'power3.out',
-          delay: (i % 4) * 0.08,
-          scrollTrigger: { trigger: item, start: 'top 92%' }
-        });
+        item.append(img, num, zoom);
+        item.addEventListener('click', () => openLightbox(i));
+        frag.appendChild(item);
       });
-    } else {
+      gallery.appendChild(frag);
+
+      const gItems = Array.from(gallery.querySelectorAll('.g-item'));
+
+      if (gsapReady && stReady) {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.g-item').forEach((item, i) => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            delay: (i % 4) * 0.08,
+            scrollTrigger: { trigger: item, start: 'top 92%' }
+          });
+        });
+      } else {
+        gObsItems(gItems);
+      }
+    }
+
+    function gObsItems(gItems) {
       const gObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -3482,6 +3475,19 @@
       }, { threshold: 0.05 });
       gItems.forEach(g => gObs.observe(g));
     }
+
+    fetch('amigos.json', { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('fail');
+        return r.json();
+      })
+      .then(function (list) {
+        FOTOS = shuffle(list.slice());
+        renderGallery();
+      })
+      .catch(function () {
+        gallery.innerHTML = '<p style="text-align:center;color:var(--champagne);padding:2rem 1rem;opacity:.7">Momentos especiais aparecerão aqui em breve.</p>';
+      });
 
     /* ==================================================
        LIGHTBOX
