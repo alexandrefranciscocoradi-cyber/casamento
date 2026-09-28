@@ -2515,20 +2515,30 @@
       50% { transform: translateY(-10px) rotate(1.6deg); }
     }
     .capsula-art .glass {
-      fill: rgba(232, 160, 171, 0.14);
+      fill: url(#capsulaGlass);
       stroke: var(--rose);
       stroke-width: 2;
+      stroke-linejoin: round;
     }
-    .capsula-art .post {
+    .capsula-art .bow {
+      fill: none;
+      stroke: var(--rose-deep);
+      stroke-width: 5;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+    .capsula-art .bow.neck {
+      stroke-width: 3;
+      opacity: 0.7;
+    }
+    .capsula-art .bezel {
       fill: var(--rose-deep);
-      opacity: 0.92;
     }
-    .capsula-art .cap {
+    .capsula-art .finial {
       fill: var(--rose-deep);
     }
     .capsula-art .sand-mound {
-      fill: var(--rose);
-      opacity: 0.85;
+      fill: url(#capsulaSand);
     }
     .capsula-art .rocket {
       animation: rocket-fly 5.5s ease-in-out infinite;
@@ -3193,23 +3203,36 @@
 
     <div class="capsula-art reveal-block" aria-hidden="true">
       <svg viewBox="0 0 160 190" role="presentation">
+        <defs>
+          <linearGradient id="capsulaGlass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+            <stop offset="1" stop-color="rgba(232, 160, 171, 0.3)"/>
+          </linearGradient>
+          <linearGradient id="capsulaSand" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e8a0ab"/>
+            <stop offset="1" stop-color="#b76e79"/>
+          </linearGradient>
+        </defs>
+
         <g transform="translate(22,34)"><g class="spark" style="--d:0s"><path d="M0 -8 l2.3 5.7 5.7 2.3 -5.7 2.3 -2.3 5.7 -2.3 -5.7 -5.7 -2.3 5.7 -2.3z"/></g></g>
         <g transform="translate(139,30)"><g class="spark" style="--d:0.8s"><path d="M0 -7 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/></g></g>
         <g transform="translate(142,142)"><g class="spark" style="--d:1.6s"><path d="M0 -8 l2.3 5.7 5.7 2.3 -5.7 2.3 -2.3 5.7 -2.3 -5.7 -5.7 -2.3 5.7 -2.3z"/></g></g>
         <g transform="translate(19,138)"><g class="spark" style="--d:2.3s"><path d="M0 -7 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/></g></g>
 
         <g class="frame">
-          <rect class="cap" x="28" y="22" width="104" height="9" rx="4.5"/>
-          <rect class="cap" x="28" y="161" width="104" height="9" rx="4.5"/>
-          <rect class="post left" x="28" y="22" width="11" height="148" rx="5.5"/>
-          <rect class="post right" x="121" y="22" width="11" height="148" rx="5.5"/>
-          <rect class="cap" x="60" y="90" width="40" height="11" rx="5.5"/>
+          <path class="bow left" d="M60 27 C40 60 38 130 58 163"/>
+          <path class="bow right" d="M100 27 C120 60 122 130 102 163"/>
+          <path class="bow neck" d="M66 92 L94 92"/>
+          <rect class="bezel" x="52" y="21" width="56" height="11" rx="5.5"/>
+          <rect class="bezel" x="52" y="158" width="56" height="11" rx="5.5"/>
+          <circle class="finial" cx="80" cy="12" r="6"/>
+          <circle class="finial" cx="80" cy="178" r="6"/>
         </g>
 
-        <path class="glass" d="M64 91 C59 74 44 62 43 50 C43 42 51 34 67 33 L93 33 C109 34 117 42 117 50 C116 62 101 74 96 91 Z"/>
-        <path class="glass" d="M64 100 C59 117 44 129 43 141 C43 149 51 157 67 158 L93 158 C109 157 117 149 117 141 C116 129 101 117 96 100 Z"/>
+        <path class="glass" d="M64 95 C62 78 52 62 46 55 C40 48 42 37 53 33 C60 31 71 30 80 30 C89 30 100 31 107 33 C118 37 120 48 114 55 C108 62 98 78 96 95 Z"/>
+        <path class="glass" d="M64 96 C62 113 52 129 46 136 C40 143 42 154 53 158 C60 160 71 161 80 161 C89 161 100 160 107 158 C118 154 120 143 114 136 C108 129 98 113 96 96 Z"/>
 
-        <path class="sand-mound" d="M55 146 L105 146 L97 157 L63 157 Z"/>
+        <path class="sand-mound" d="M60 148 C66 144 94 144 100 148 L97 157 L63 157 Z"/>
         <circle class="grain" cx="86" cy="110" r="1.6" style="--d:0s"/>
         <circle class="grain" cx="78" cy="114" r="1.6" style="--d:0.45s"/>
         <circle class="grain" cx="92" cy="112" r="1.6" style="--d:0.9s"/>
