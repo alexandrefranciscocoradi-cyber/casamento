@@ -2448,6 +2448,29 @@
       border-radius: 22px;
       box-shadow: 0 30px 70px rgba(183, 110, 121, 0.12);
     }
+    .capsula-reveal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: -0.6rem auto 2.4rem;
+      font-size: 0.8rem;
+    }
+    .capsula-reveal-label {
+      font-weight: 600;
+      color: var(--rose-deep);
+      letter-spacing: 0.4px;
+    }
+    .capsula-reveal-op {
+      padding: 0.35rem 0.85rem;
+      border: 1.5px solid var(--rose);
+      border-radius: 999px;
+      color: var(--rose-deep);
+      background: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      font-size: 0.78rem;
+    }
     .capsula-frame {
       display: block;
       width: 100%;
@@ -3170,6 +3193,12 @@
           <rect class="shine" x="52" y="50" width="11" height="116" rx="5.5"/>
         </g>
       </svg>
+    </div>
+
+    <div class="capsula-reveal reveal-block">
+      <span class="capsula-reveal-label">📅 &nbsp;Revelar em quanto tempo?</span>
+      <span class="capsula-reveal-op">1 mês</span>
+      <span class="capsula-reveal-op">6 meses</span>
     </div>
 
     <div class="capsula-wrap reveal-block">
