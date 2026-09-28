@@ -2066,6 +2066,63 @@
       box-shadow: 0 15px 40px rgba(183, 110, 121, 0.35);
     }
 
+    /* ========== CÁPSULA DO TEMPO (FOGUETE, MOBILE) ========== */
+    .capsula-float {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(183, 110, 121, 0.5);
+      background: rgba(42, 34, 34, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--rose-light);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s var(--ease);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      z-index: 1420;
+    }
+    .capsula-float-icon {
+      width: 24px;
+      height: 24px;
+      animation: rocket-bob 2.2s ease-in-out infinite;
+    }
+    .capsula-float .f-nose { fill: var(--rose); }
+    .capsula-float .f-body { fill: #fffdf6; stroke: var(--rose-deep); stroke-width: 1.1; }
+    .capsula-float .f-win { fill: var(--blush); stroke: var(--rose); stroke-width: 1; }
+    .capsula-float .f-fin { fill: var(--rose-deep); }
+    .capsula-float .f-flame,
+    .capsula-float .f-flame2 {
+      transform-box: fill-box;
+      transform-origin: 50% 0;
+      animation: rk-flame-flicker 0.35s ease-in-out infinite alternate;
+    }
+    .capsula-float .f-flame { fill: rgba(232, 160, 171, 0.95); }
+    .capsula-float .f-flame2 { fill: var(--rose); animation-delay: -0.18s; }
+    @keyframes rocket-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes rk-flame-flicker {
+      from { transform: scaleY(0.8) translateY(1px); }
+      to { transform: scaleY(1.2) translateY(-1px); }
+    }
+    .capsula-float:hover {
+      background: var(--rose);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(183, 110, 121, 0.4);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .capsula-float-icon,
+      .capsula-float .f-flame,
+      .capsula-float .f-flame2 { animation: none; }
+    }
+
     /* ========== MÚSICA ========== */
     .music-float {
       position: fixed;
@@ -2243,6 +2300,7 @@
       .lightbox-next { right: 0.6rem; }
       .lightbox-btn { width: 42px; height: 42px; font-size: 1.3rem; }
       .to-top { bottom: 6.6rem; left: 1.2rem; right: auto; width: 46px; height: 46px; }
+      .capsula-float { display: flex; bottom: 1.4rem; left: 1.2rem; right: auto; width: 46px; height: 46px; }
       .music-float { top: auto; bottom: 1.4rem; right: 1.1rem; width: 46px; height: 46px; }
       .map-wrap iframe { height: 320px; }
     }
@@ -3278,6 +3336,19 @@
   <!-- Back to top -->
   <button class="to-top" id="toTop" aria-label="Abrir menu">☰</button>
 
+  <!-- Cápsula do Tempo (mobile) -->
+  <button class="capsula-float" id="capsulaFloat" type="button" aria-label="Cápsula do Tempo" title="Cápsula do Tempo">
+    <svg class="capsula-float-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path class="f-nose" d="M12 1.5 15.6 7.2 8.4 7.2Z"/>
+      <path class="f-body" d="M7.6 7.2h8.8v5.6a1.6 1.6 0 0 1-1.6 1.6H9.2a1.6 1.6 0 0 1-1.6-1.6Z"/>
+      <circle class="f-win" cx="12" cy="10.6" r="1.9"/>
+      <path class="f-fin" d="M7.6 10.9 4.2 14.6h3.4Z"/>
+      <path class="f-fin" d="M16.4 10.9 19.8 14.6h-3.4Z"/>
+      <path class="f-flame" d="M9.9 14.6h4.2l-2.1 5.6Z"/>
+      <path class="f-flame2" d="M10.9 14.6h2.2l-1.1 3.6Z"/>
+    </svg>
+  </button>
+
   <!-- Music control -->
   <button class="music-float" id="musicFloat" type="button" aria-label="Pausar música" title="Música">🔊</button>
 
@@ -3450,6 +3521,14 @@
     onScroll(0);
 
     toTop.addEventListener('click', openMainMenu);
+
+    const capsulaFloat = document.getElementById('capsulaFloat');
+    if (capsulaFloat) {
+      capsulaFloat.addEventListener('click', function () {
+        if (lenis) lenis.scrollTo('#capsula', { duration: 1.3 });
+        else document.getElementById('capsula').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
     /* ---------- NAV CLICKS / SCROLL SPY ---------- */
     const spyLinks = document.querySelectorAll('[data-spy]');
